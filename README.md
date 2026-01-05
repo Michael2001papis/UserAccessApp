@@ -1,203 +1,255 @@
 # UserAccessApp
+פרויקט מסכם – מודול React
 
-אפליקציית React + TypeScript + Vite לניהול גישות משתמשים וכרטיסי עסק.
+אפליקציית React Single Page Application (SPA) לניהול תוכן מסוג כרטיסי ביקור, הכוללת מערכת התחברות והרשאות, ניהול כרטיסים למשתמשים עסקיים, מערכת מועדפים, עמוד פרטי עסק עם מפה, ו־מערכת CRM למשתמש מנהל.
 
-## תיאור הפרויקט
+הפרויקט פותח כחלק מהפרויקט המסכם של מודול React, ומשלב קריאות HTTP לשרת REST API חיצוני.
 
-UserAccessApp היא אפליקציית Single Page Application (SPA) שנבנתה במסגרת קורס Full Stack Development. האפליקציה מאפשרת ניהול משתמשים עם הרשאות שונות (אישי, עסקי, מנהל), ניהול כרטיסי עסק, מערכת מועדפים, ועוד.
+## תיאור כללי
 
-### תכונות עיקריות
+UserAccessApp היא אפליקציית Web בצד לקוח (Client Side) המדגימה עבודה עם React תוך:
 
-- **מערכת משתמשים**: התחברות והרשמה עם JWT authentication
-- **כרטיסי עסק**: יצירה, עריכה, מחיקה והצגה של כרטיסי עסק
-- **מועדפים**: שמירת כרטיסים כמועדפים (server-side)
-- **הרשאות**: שלושה סוגי משתמשים (regular, business, admin)
-- **CRM**: ניהול משתמשים למנהלים
-- **עיצוב responsive**: Tailwind CSS עם תמיכה ב-dark mode
+ניתוב בין דפים (React Router)
 
-## טכנולוגיות
+ניהול state גלובלי
 
-- **React 18** - ספריית UI
-- **TypeScript** - שפה מוטיפוסית
-- **Vite** - Build tool ו-development server
-- **Redux Toolkit** - ניהול state גלובלי
-- **React Router** - ניתוב בין דפים
-- **Tailwind CSS** - עיצוב responsive
-- **React Hook Form** - ניהול טפסים
-- **Joi** - ולידציה
-- **Axios** - בקשות HTTP
-- **React Toastify** - הודעות
-- **JWT Decode** - פענוח tokens
+עבודה עם טפסים וולידציה
 
-## דרישות מערכת
+קריאות HTTP ל־API
 
-- Node.js (גרסה 16 ומעלה)
-- npm או yarn
+הרשאות משתמשים
 
-## התקנה והרצה
+עיצוב רספונסיבי ונגיש
 
-### התקנה (Clean Clone)
+התוכן (כרטיסי הביקור, משתמשים, מועדפים) נשמר ומנוהל בצד השרת באמצעות REST API.
 
-```bash
-# שכפול הפרויקט
-git clone <repository-url>
-cd UserAccessApp
+## תכונות עיקריות
 
-# התקנת תלויות
-npm install
-```
+### מערכת משתמשים והרשאות
 
-**חשוב**: הפרויקט צריך להיות משוכפל לתיקייה ריקה. התיקייה הראשית היא `UserAccessApp/`.
+התחברות משתמשים באמצעות JWT
 
-### הרצה במצב פיתוח
+שמירת token ב־localStorage (ללא שמירת מידע רגיש)
 
-```bash
-npm run dev
-```
+שלושה סוגי משתמשים:
 
-האפליקציה תרוץ על `http://localhost:5173`
+Regular User
 
-### בניית גרסת production
+Business User
 
-```bash
-npm run build
-```
+Admin
 
-הקבצים ייבנו לתיקייה `dist/`
+### ניהול כרטיסי ביקור (CRUD)
 
-### הרצת גרסת production מקומית
+הצגת כרטיסי ביקור בעמוד הבית
 
-```bash
-npm run preview
-```
+יצירת כרטיס חדש (Business בלבד)
 
-## משתני סביבה
+עריכת כרטיס קיים
 
-הפרויקט משתמש ב-API חיצוני. אין צורך במשתני סביבה כרגע, אך ניתן להוסיף קובץ `.env` עם המשתנים הבאים:
+מחיקת כרטיס
 
-```
-VITE_API_BASE_URL=https://monkfish-app-z9uza.ondigitalocean.app/bcard2
-```
+דף "My Cards" להצגת כרטיסי המשתמש
 
-**הערה**: קובץ `.env` לא נכלל ב-repository (ראה `.gitignore`). יש ליצור `.env.example` אם נדרש.
+### מועדפים
 
-## Roles והרשאות
+סימון כרטיסים כמועדפים
 
-### Regular User (משתמש רגיל)
-- צפייה בכרטיסי עסק
-- שמירת מועדפים
-- עריכת פרופיל אישי
+שמירה בצד השרת
 
-### Business User (משתמש עסקי)
-- כל הרשאות של Regular User
-- יצירה, עריכה ומחיקה של כרטיסי עסק שלו
-- גישה לעמוד "My Cards"
+דף ייעודי להצגת מועדפים
 
-### Admin User (מנהל)
-- כל הרשאות של Business User
-- גישה לעמוד CRM
-- ניהול משתמשים (שינוי סטטוס, מחיקה)
-- לא ניתן למחוק משתמשים מנהליים
+הסרה ממועדפים
+
+### דפי מערכת
+
+Home – עמוד ראשי עם כרטיסים וחיפוש
+
+Business Details – עמוד פרטי עסק עם מפה
+
+Sign In – התחברות
+
+Profile – עריכת פרטי משתמש
+
+Favorites – כרטיסים מועדפים
+
+My Cards – ניהול כרטיסים אישיים
+
+CRM – ניהול משתמשים (Admin בלבד)
+
+About – דף אודות והסבר על המערכת
+
+## טכנולוגיות צד לקוח
+
+React 18
+
+TypeScript
+
+Vite
+
+React Router
+
+Redux Toolkit
+
+Axios – קריאות HTTP
+
+React Hook Form – ניהול טפסים
+
+Joi – ולידציות
+
+Tailwind CSS – עיצוב רספונסיבי
+
+React Icons
+
+React Toastify
+
+## עיצוב ורספונסיביות
+
+עיצוב מלא באמצעות CSS (Tailwind)
+
+התאמה למובייל, טאבלט ודסקטופ
+
+תמיכה ב־Light Mode / Dark Mode
+
+תפריט ניווט דינמי לפי הרשאות
+
+Footer דינמי לפי סוג משתמש
+
+שימוש באייקונים לפעולות CRUD
+
+## נגישות
+
+שם האפליקציה מוגדר ב־<title>
+
+favicon מוגדר
+
+לכל תמונה קיים alt
+
+הודעות שגיאה והצלחה מוצגות למשתמש
+
+## ולידציות וטפסים
+
+אחידות עיצוב לכל הטפסים
+
+ולידציה לכל שדה חובה
+
+חיווי ויזואלי לשגיאות
+
+שליחה מתאפשרת רק לאחר ולידציה תקינה
+
+סיסמה נדרשת:
+
+לפחות 8 תווים
+
+אות גדולה
+
+אות קטנה
+
+לפחות 4 ספרות
+
+תו מיוחד מתוך: !@%$#^&*-_*
+
+## קריאות HTTP (API)
+
+המערכת משתמשת ב־REST API חיצוני.
+
+Base URL:
+
+https://monkfish-app-z9uza.ondigitalocean.app/bcard2
+
+### Authentication
+
+POST /users/login – התחברות (JWT)
+
+### Cards
+
+GET /cards
+
+GET /cards/:id
+
+POST /cards
+
+PUT /cards/:id
+
+PATCH /cards/:id – מועדפים
+
+### Users (Admin)
+
+GET /users
+
+PATCH /users/:id
+
+DELETE /users/:id
+
+### Headers לבקשות מוגנות:
+
+x-auth-token: <JWT_TOKEN>
 
 ## מבנה הפרויקט
 
-```
 UserAccessApp/
 ├── src/
-│   ├── API/              # פונקציות API
+│   ├── API/              # קריאות API
 │   ├── Components/       # קומפוננטות משותפות
 │   ├── Pages/            # דפי האפליקציה
 │   ├── store/            # Redux store
 │   ├── validations/      # סכמות ולידציה
-│   ├── App.tsx           # קומפוננטת השורש
-│   └── main.tsx          # נקודת הכניסה
-├── public/               # קבצים סטטיים
-├── index.html            # קובץ HTML ראשי
+│   ├── App.tsx
+│   └── main.tsx
+├── public/
+├── index.html
 ├── package.json
-└── README.md
-```
+├── README.md
 
-## API Endpoints
+## התקנה והרצה (Clean Clone)
 
-האפליקציה מתחברת לשרת REST API:
+git clone <repository-url>
+cd UserAccessApp
+npm install
 
-**Base URL**: `https://monkfish-app-z9uza.ondigitalocean.app/bcard2`
+### הרצה בפיתוח
 
-### Authentication
-- `POST /users/login` - התחברות (מחזיר JWT token)
-  - Body: `{ email: string, password: string }`
-  - Response: JWT token (string)
+npm run dev
 
-### Cards
-- `GET /cards` - קבלת כל הכרטיסים
-- `GET /cards/:id` - קבלת כרטיס ספציפי
-- `POST /cards` - יצירת כרטיס חדש (נדרש `x-auth-token` header)
-- `PUT /cards/:id` - עדכון כרטיס (נדרש `x-auth-token` header)
-- `PATCH /cards/:id` - עדכון מועדף (נדרש `x-auth-token` header)
 
-### Users (Admin Only)
-- `GET /users` - קבלת רשימת משתמשים (נדרש `x-auth-token` header)
-- `PATCH /users/:id` - עדכון סטטוס משתמש (נדרש `x-auth-token` header)
-- `DELETE /users/:id` - מחיקת משתמש (נדרש `x-auth-token` header)
+האפליקציה תרוץ על:
+http://localhost:5173
 
-**Headers נדרשים לבקשות מוגנות**: `x-auth-token: <JWT_TOKEN>`
+### בניית Production
 
-## פיתוח
+npm run build
 
-### סקריפטים זמינים
+### Preview מקומי
 
-- `npm run dev` - הרצת development server
-- `npm run build` - בניית production
-- `npm run preview` - הרצת preview של build
-- `npm run lint` - בדיקת ESLint
-- `npm run lint:fix` - תיקון אוטומטי של ESLint
-- `npm run format` - עיצוב קוד עם Prettier
-- `npm run typecheck` - בדיקת TypeScript (ללא build)
+npm run preview
 
-## Deployment ל-Vercel
+### Deployment (Vercel)
 
-### הגדרות Vercel
+Framework: Vite
 
-1. **Framework Preset**: Vite
-2. **Root Directory**: `UserAccessApp` (אם הפרויקט בתיקייה)
-3. **Install Command**: `npm install`
-4. **Build Command**: `npm run build`
-5. **Output Directory**: `dist`
-6. **Node Version**: 18.x (או גבוה יותר)
+Build Command: npm run build
 
-### שלבים
+Output Directory: dist
 
-1. התחבר ל-Vercel
-2. Import project מה-Git repository
-3. Vercel יזהה אוטומטית שזה פרויקט Vite
-4. וודא שההגדרות:
-   - Root Directory: `UserAccessApp` (אם נדרש)
-   - Build Command: `npm run build`
-   - Output Directory: `dist`
-5. לחץ Deploy
+Node Version: 18+
 
-**הערה**: אם הפרויקט ברמת השורש של ה-repository, השאר Root Directory ריק.
+## הערות חשובות להגשה
 
-## בעיות נפוצות
+הפרויקט מועלה ל־Git ללא:
 
-### Build נכשל
-- וודא ש-Node.js גרסה 16+ מותקן
-- מחק `node_modules` ו-`package-lock.json` והרץ `npm install` מחדש
-- וודא שאין שגיאות TypeScript: `npm run typecheck`
+node_modules
 
-### API לא מגיב
-- וודא שה-API server פעיל
-- בדוק את ה-network tab בדפדפן
-- וודא שה-token תקף (אם נדרש)
+dist
 
-### Routing לא עובד
-- וודא שהשרת מוגדר ל-SPA mode (Vercel עושה זאת אוטומטית)
-- בדוק את ה-`base` ב-`vite.config.ts`
+.env
 
-## רישיון
+קוד נקי, ללא console.log
 
-פרויקט זה נבנה במסגרת קורס לימודי.
+קבצים מחולקים (אין קובץ מעל 200 שורות)
+
+תוכן אמיתי (לא Lorem Ipsum)
 
 ## מחבר
 
 מיכאל פפיסמדוב
+פרויקט מסכם – מודול React
